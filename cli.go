@@ -19,11 +19,15 @@ import (
 
 func main() {
 	app := &cli.App{
-		Name:  "push",
-		Usage: "Uploads the current directory to Widget",
-		Action: func(c *cli.Context) error {
-			apiID := c.Args().Get(0)
-			return TarAndUpload(apiID)
+		Commands: []*cli.Command{
+			{
+				Name:  "push",
+				Usage: "Uploads the current directory to Widget",
+				Action: func(c *cli.Context) error {
+					apiID := c.Args().Get(0)
+					return TarAndUpload(apiID)
+				},
+			},
 		},
 	}
 
